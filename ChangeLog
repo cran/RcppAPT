@@ -1,0 +1,40 @@
+2015-02-20  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/hasPackages.cpp: Now searches by regular expression for
+	packages, with a default to a general wildcard
+
+	* configure: Added simple sanity checker to ensure we are on a
+	system such as Debian, Ubuntu or one of the derivatives -- and that
+	the libapt-pkg-dev package is installed
+
+	* DESCRIPTION: Added SystemRequirements: and OS_type:
+
+	* src/hasPackages.cpp: Example added to roxygen2 documentation
+	* src/hasPackages.cpp: Idem
+
+	* .travis.yml: Added for Travis CI testing
+
+	* src/getPackages.cpp: Added #include <apt-pkg/init.h> for Ubuntu 12.04
+	* src/hasPackages.cpp: Idem
+
+2015-02-19  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/hasPackages.cpp: New function to check if packages available
+	* man/hasPackages.Rd: Generated via roxygen header
+
+	* src/getPackages.cpp: Also return Section as third column
+
+2015-02-18  Dirk Eddelbuettel  <edd@debian.org>
+
+	* src/getPackages.cpp: Added proper copyright header; changed to
+	return two-column data.frame with name and (if installed) version
+	* man/getPackages.Rd: Generated via roxygen header
+
+	* cleanup: Added helper script
+
+2015-02-17  Dirk Eddelbuettel  <edd@debian.org>
+
+	* DESCRIPTION: Very first version and commit
+
+	* src/getPackages.cpp: Simple accessor for known packages
+

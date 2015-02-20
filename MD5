@@ -1,0 +1,14 @@
+305570d066ddf34c18e0f60dfe91cbea *ChangeLog
+7e8340dce1bcb565a1c0cbef50a61fdb *DESCRIPTION
+12fad190a420b18eca2c63c0d076f72c *NAMESPACE
+dcdf497657f6bafe07134a8bbb702b4f *R/RcppExports.R
+7d4c8d1e18b260c4e3356278a9e362d5 *cleanup
+628436f739402907165f23a2b19cf61d *configure
+5a3378c4ff7b736bd84b7048c1f80b44 *inst/TODO.md
+2135a9c1d66d42b78daa9795144df2ec *man/getPackages.Rd
+0e5134fb7e2f4062d8b4d2bcf222b1f6 *man/hasPackages.Rd
+cf9d620f6227daf79eb65e154d68e9f2 *man/rcppapt-package.Rd
+c48c04d0269b2cae124d836a35564c96 *src/Makevars
+9664e00c2d60bf179d3608cfa1a6116e *src/RcppExports.cpp
+704702ff3a068681457127f86178737b *src/getPackages.cpp
+062ca747193dffa328247c61ebf2990e *src/hasPackage.cpp
