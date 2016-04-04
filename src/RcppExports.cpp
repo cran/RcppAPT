@@ -5,8 +5,41 @@
 
 using namespace Rcpp;
 
+// buildDepends
+std::vector<std::string> buildDepends(const std::string regexp);
+RcppExport SEXP RcppAPT_buildDepends(SEXP regexpSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< const std::string >::type regexp(regexpSEXP);
+    __result = Rcpp::wrap(buildDepends(regexp));
+    return __result;
+END_RCPP
+}
+// showSrc
+bool showSrc(const std::string regexp);
+RcppExport SEXP RcppAPT_showSrc(SEXP regexpSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< const std::string >::type regexp(regexpSEXP);
+    __result = Rcpp::wrap(showSrc(regexp));
+    return __result;
+END_RCPP
+}
+// dumpPackages
+bool dumpPackages(const std::string regexp);
+RcppExport SEXP RcppAPT_dumpPackages(SEXP regexpSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< const std::string >::type regexp(regexpSEXP);
+    __result = Rcpp::wrap(dumpPackages(regexp));
+    return __result;
+END_RCPP
+}
 // getPackages
-Rcpp::DataFrame getPackages(const std::string regexp = ".");
+Rcpp::DataFrame getPackages(const std::string regexp);
 RcppExport SEXP RcppAPT_getPackages(SEXP regexpSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
