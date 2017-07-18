@@ -19,7 +19,7 @@
 #' @examples
 #' buildDepends("r-cran-rcpp$")
 buildDepends <- function(regexp = ".") {
-    .Call('RcppAPT_buildDepends', PACKAGE = 'RcppAPT', regexp)
+    .Call('_RcppAPT_buildDepends', PACKAGE = 'RcppAPT', regexp)
 }
 
 #' The APT Package Management system uses a data-rich caching
@@ -45,7 +45,7 @@ buildDepends <- function(regexp = ".") {
 #' showSrc("r-cran-rcpp")  # also finds RcppEigen and RcppArmadillo
 #' showSrc("r-cran-rcpp$") # just Rcpp
 showSrc <- function(regexp = ".") {
-    .Call('RcppAPT_showSrc', PACKAGE = 'RcppAPT', regexp)
+    .Call('_RcppAPT_showSrc', PACKAGE = 'RcppAPT', regexp)
 }
 
 #' The APT Package Management system uses a data-rich caching
@@ -70,7 +70,7 @@ showSrc <- function(regexp = ".") {
 #' @examples
 #' dumpPackages("^r-(base|doc)-")
 dumpPackages <- function(regexp = ".") {
-    .Call('RcppAPT_dumpPackages', PACKAGE = 'RcppAPT', regexp)
+    .Call('_RcppAPT_dumpPackages', PACKAGE = 'RcppAPT', regexp)
 }
 
 #' The APT Package Management system uses a data-rich caching
@@ -87,13 +87,12 @@ dumpPackages <- function(regexp = ".") {
 #' @param regexp A regular expression for the package name(s) with a
 #' default of all (".").
 #' @return A data frame with columns containing the
-#' package name, the installed version (or NA if not installed)
-#' and the section it is installed in (or NA).
+#' package name and version (or NA if unavailable).
 #' @author Dirk Eddelbuettel
 #' @examples
 #' getPackages("^r-(base|doc)-")
 getPackages <- function(regexp = ".") {
-    .Call('RcppAPT_getPackages', PACKAGE = 'RcppAPT', regexp)
+    .Call('_RcppAPT_getPackages', PACKAGE = 'RcppAPT', regexp)
 }
 
 #' The APT Package Management system uses a data-rich caching
@@ -107,12 +106,12 @@ getPackages <- function(regexp = ".") {
 #' @examples
 #' hasPackages(c("r-base-core", "somethingThatDoesNotExist"))
 hasPackages <- function(pkg) {
-    .Call('RcppAPT_hasPackages', PACKAGE = 'RcppAPT', pkg)
+    .Call('_RcppAPT_hasPackages', PACKAGE = 'RcppAPT', pkg)
 }
 
 #' The APT Package Management system uses a data-rich caching
 #' structure. This accessor function returns the Reverse-Depends for
-#' a set of packages matching the given regular expression. 
+#' a set of packages matching the given regular expression.
 #'
 #' Note that the package lookup uses regular expressions. If only a
 #' single package is desired, append a single \code{$} to terminate
@@ -124,11 +123,33 @@ hasPackages <- function(pkg) {
 #' @param regexp A regular expression for the package name(s) with a
 #' default of all (".")
 #' @return A data frame with two column listing packages and, where
-#' available, minimal version. 
+#' available, minimal version.
 #' @author Dirk Eddelbuettel
 #' @examples
 #' reverseDepends("r-cran-rcpp$")
 reverseDepends <- function(regexp = ".") {
-    .Call('RcppAPT_reverseDepends', PACKAGE = 'RcppAPT', regexp)
+    .Call('_RcppAPT_reverseDepends', PACKAGE = 'RcppAPT', regexp)
+}
+
+#' The APT Package Management system uses a data-rich caching
+#' structure. This accessor function returns the Depends for
+#' a set of packages matching the given regular expression.
+#'
+#' Note that the package lookup uses regular expressions. If only a
+#' single package is desired, append a single \code{$} to terminate
+#' the expression.  \emph{Ie} \code{r-cran-rcpp$} will \emph{not}
+#' return results for \code{r-cran-rcpparmadillo} and
+#' \code{r-cran-rcppeigen}.
+#'
+#' @title Return Depends for given packages
+#' @param regexp A regular expression for the package name(s) with a
+#' default of all (".")
+#' @return A data frame with four columns listing (source) package, dependend
+#' packages, comparison operator, and, where available, minimal version. 
+#' @author Dirk Eddelbuettel
+#' @examples
+#' reverseDepends("r-cran-rcpp$")
+getDepends <- function(regexp = ".") {
+    .Call('_RcppAPT_getDepends', PACKAGE = 'RcppAPT', regexp)
 }
 

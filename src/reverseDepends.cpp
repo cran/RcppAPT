@@ -33,7 +33,7 @@ inline const char *localDeNull(const char *s) {return (s == 0?"(null)":s);}
 
 //' The APT Package Management system uses a data-rich caching
 //' structure. This accessor function returns the Reverse-Depends for
-//' a set of packages matching the given regular expression. 
+//' a set of packages matching the given regular expression.
 //'
 //' Note that the package lookup uses regular expressions. If only a
 //' single package is desired, append a single \code{$} to terminate
@@ -45,7 +45,7 @@ inline const char *localDeNull(const char *s) {return (s == 0?"(null)":s);}
 //' @param regexp A regular expression for the package name(s) with a
 //' default of all (".")
 //' @return A data frame with two column listing packages and, where
-//' available, minimal version. 
+//' available, minimal version.
 //' @author Dirk Eddelbuettel
 //' @examples
 //' reverseDepends("r-cran-rcpp$")
@@ -82,6 +82,72 @@ Rcpp::DataFrame reverseDepends(const std::string regexp = ".") {
 
         }
     }
-    return Rcpp::DataFrame::create(Rcpp::Named("package") = res,
-                                   Rcpp::Named("version") = ver);
+    return Rcpp::DataFrame::create(Rcpp::Named("package")          = res,
+                                   Rcpp::Named("version")          = ver,
+                                   Rcpp::Named("stringsAsFactors") = false);
+}
+
+//' The APT Package Management system uses a data-rich caching
+//' structure. This accessor function returns the Depends for
+//' a set of packages matching the given regular expression.
+//'
+//' Note that the package lookup uses regular expressions. If only a
+//' single package is desired, append a single \code{$} to terminate
+//' the expression.  \emph{Ie} \code{r-cran-rcpp$} will \emph{not}
+//' return results for \code{r-cran-rcpparmadillo} and
+//' \code{r-cran-rcppeigen}.
+//'
+//' @title Return Depends for given packages
+//' @param regexp A regular expression for the package name(s) with a
+//' default of all (".")
+//' @return A data frame with four columns listing (source) package, dependend
+//' packages, comparison operator, and, where available, minimal version. 
+//' @author Dirk Eddelbuettel
+//' @examples
+//' reverseDepends("r-cran-rcpp$")
+// [[Rcpp::export]]
+Rcpp::DataFrame getDepends(const std::string regexp = ".") {
+
+    pkgInitConfig(*_config);    	// _config, _system defined as extern and in library
+    pkgInitSystem(*_config, _system);
+
+    pkgCacheFile cacheFile;
+    pkgCache* cache = cacheFile.GetPkgCache();
+
+    APT::CacheFilter::PackageNameMatchesRegEx pkgre(regexp);
+
+    std::vector<std::string> srcpkg;
+    std::vector<std::string> res;
+    std::vector<std::string> ver;
+    std::vector<int> op;
+
+    for (pkgCache::PkgIterator pkg = cache->PkgBegin(); !pkg.end(); pkg++) {
+        if (pkgre(pkg)) {
+            const std::string pkgstr(pkg.Name());
+            if (pkg.FullName(true) == pkgstr) { 	// we do not want the foo:i386 variant
+                for (pkgCache::VerIterator Cur = pkg.VersionList(); Cur.end() != true; ++Cur) {
+                    //Rcpp::Rcout << Cur.VerStr() << " -\n";
+                    for (pkgCache::DepIterator Dep = Cur.DependsList(); Dep.end() != true; ++Dep) {
+                        std::string txt = Dep.TargetPkg().FullName(true);
+                        if (txt.find(pkgstr + ":") == std::string::npos) {
+                            // Rcpp::Rcout << "\t" << Dep.TargetPkg().FullName(true)
+                            //             << " (" << (int)Dep->CompareOp << " "
+                            //             << localDeNull(Dep.TargetVer()) << ")\n";
+                            srcpkg.push_back(pkgstr);
+                            res.push_back(Dep.TargetPkg().FullName(true));
+                            ver.push_back(localDeNull(Dep.TargetVer()));
+                            op.push_back((int)Dep->CompareOp);
+                        }
+                    }
+                    // Rcpp::Rcout << std::endl;
+                }
+            }
+        }
+    }
+    Rcpp::DataFrame df = Rcpp::DataFrame::create(Rcpp::Named("srcpkg")           = srcpkg,
+                                                 Rcpp::Named("deppkg")           = res,
+                                                 Rcpp::Named("cmpop")            = op,
+                                                 Rcpp::Named("version")          = ver,
+                                                 Rcpp::Named("stringsAsFactors") = false);
+    return df;
 }
