@@ -1,8 +1,8 @@
 Package: RcppAPT
 Type: Package
 Title: 'Rcpp' Interface to the APT Package Manager
-Version: 0.0.5
-Date: 2018-09-29
+Version: 0.0.6
+Date: 2020-03-14
 Author: Dirk Eddelbuettel
 Maintainer: Dirk Eddelbuettel <edd@debian.org>
 Description: The 'APT Package Management System' provides Debian and
@@ -17,6 +17,6 @@ Suggests: knitr
 VignetteBuilder: knitr
 RoxygenNote: 6.1.0
 NeedsCompilation: yes
-Packaged: 2018-09-29 14:56:04.140314 UTC; edd
+Packaged: 2020-03-14 17:51:08.835775 UTC; edd
 Repository: CRAN
-Date/Publication: 2018-09-29 15:40:06 UTC
+Date/Publication: 2020-03-14 18:10:02 UTC

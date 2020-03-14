@@ -1,4 +1,4 @@
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > library(RcppAPT)
 #  > library(data.table)
 #  > rd <- reverseDepends("r-base-core")         # 516 x 2
@@ -6,7 +6,7 @@
 #  > rd <- rd[order(rd[,2]), ]
 #  > setDT(rd)
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > rd
 #  > rd
 #               package version
@@ -23,7 +23,7 @@
 #  489:      r-cran-car 3.4.1-2
 #  >
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > rd[ version=="3.0.0~20130330-1", version := "3.0.0.20130330-1"]
 #  > rd[ version=="3.2.4-revised-1", version := "3.2.4.1-1"]
 #  > rd[version!="", oldVersion := version  <=  package_version("3.3.3-1")]
@@ -42,7 +42,7 @@
 #  481:     r-cran-boot          3.4.1-2      FALSE
 #  482:      r-cran-car          3.4.1-2      FALSE
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > rd[ version=="", skip:=TRUE ]
 #  > rd[ is.na(skip), skip:=FALSE]
 #  > rd[ skip==FALSE, ]
@@ -60,7 +60,7 @@
 #  484:      r-cran-car          3.4.1-2      FALSE FALSE
 #  >
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > regexp <- paste(paste0("^", rd[skip==FALSE, package], "$"), collapse="|")
 #  > dep <- getDepends(regexp)
 #  > setDT(dep)
@@ -79,7 +79,7 @@
 #  3748:   r-cran-pkgkitten             r-api-3     0           (null)
 #  >
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > comp <- dep[deppkg=="libc6"]   # 242
 #  > comp
 #                   srcpkg deppkg cmpop version isCompiled
@@ -96,7 +96,7 @@
 #  242:         r-cran-gss  libc6     2     2.4       TRUE
 #  >
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > setkey(comp, srcpkg)
 #  > setkey(rd, package)
 #  > all <- rd[comp[, c(1,5)]]   # inner join (by default on columns with keys)
@@ -115,7 +115,7 @@
 #  242:                r-mathlib 3.4.1-2      FALSE FALSE       TRUE
 #  >
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > all[oldVersion==TRUE,][order(version),]    # 167
 #                        package version oldVersion  skip isCompiled
 #    1:            r-cran-bitops 3.0.1-6       TRUE FALSE       TRUE
@@ -131,7 +131,7 @@
 #  167:               r-cran-zoo 3.3.3-1       TRUE FALSE       TRUE
 #  >
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > all[, cran:=grepl("^r-cran", package) ]
 #  > all[, bioc:=grepl("^r-bioc", package) ]
 #  > all[bioc==TRUE & oldVersion==TRUE,]                # 17 BioC
@@ -155,7 +155,7 @@
 #  17:       r-bioc-snpstats 3.3.1.20161024-1       TRUE FALSE       TRUE FALSE TRUE
 #  >
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > all[bioc!=TRUE & cran!=TRUE & oldVersion==TRUE,]   # 3 other
 #                      package version oldVersion  skip isCompiled  cran  bioc
 #  1:       r-other-amsmercury 3.3.2-1       TRUE FALSE       TRUE FALSE FALSE
@@ -163,7 +163,7 @@
 #  3: r-other-mott-happy.hbrem 3.0.2-1       TRUE FALSE       TRUE FALSE FALSE
 #  >
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > cand <- all[ cran==TRUE & oldVersion==TRUE, ]   # 147
 #  > cand
 #               package version oldVersion  skip isCompiled cran  bioc
@@ -180,7 +180,7 @@
 #  147:      r-cran-zoo 3.3.3-1       TRUE FALSE       TRUE TRUE FALSE
 #  >
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > db <- tools::CRAN_package_db()   # CRAN pkge info: N rows x 65 cols
 #  > setDT(db)
 #  > db[, package:=paste0("r-cran-", tolower(Package))]
@@ -201,10 +201,10 @@
 #  147:      r-cran-zoo      zoo   1.8-0              yes       TRUE FALSE
 #  >
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > saveRDS(foo[, .(package, Package, Version, NeedsCompilation, oldVersion, skip)], file="debpackages.rds")
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  deb <- readRDS("~/debpackages.rds")
 #  for (i in 1:nrow(deb)) {
 #      deb[i, "dotCorFortran"] <- if (is.na(deb[i, "Package"])) NA
@@ -214,7 +214,7 @@
 #  }
 #  saveRDS(deb, "~/debpackagesout.rds")
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > deb <- readRDS("debpackagesout.rds")
 #  > setDT(deb)
 #  > deb[ is.na(dotCorFortran) |(dotCorFortran & hasRegistration), 1:3]
@@ -264,7 +264,7 @@
 #                       package           Package  Version
 #  >
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  pkgs <- rbind(all[bioc!=TRUE & cran!=TRUE & oldVersion==TRUE, 1],
 #                all[bioc==TRUE & oldVersion==TRUE, 1])[[1]]
 #  
@@ -286,7 +286,7 @@
 #  
 #  setDT(df)
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > df[dotCorFortran & hasRegistration, 1]
 #                       pkg
 #  1:           r-bioc-affy
@@ -295,7 +295,7 @@
 #  4: r-bioc-preprocesscore
 #  >
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > nmu <- deb[ is.na(dotCorFortran) | (dotCorFortran & hasRegistration), 1] #42
 #  > oth <- df[dotCorFortran & hasRegistration, 1]
 #  >
@@ -352,7 +352,7 @@
 #  >
 #  >
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  > regexp <- paste(paste0("^", nmu[[1]], "$"), collapse="|")
 #  >
 #  > res <- getPackages(regexp)
@@ -406,7 +406,7 @@
 #  46               r-cran-gam          1.14-1
 #  >
 
-## ---- eval=FALSE---------------------------------------------------------
+## ---- eval=FALSE--------------------------------------------------------------
 #  >
 #  > for (i in 1:nrow(res))
 #  +     cat("nmu", paste(res[i,], collapse="_"), ". ANY . -m 'Rebuild against R 3.4.*, see #861333'\n")
