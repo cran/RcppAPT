@@ -3,6 +3,13 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/rcppapt/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/rcppapt/issues/#1}{##1}}
 
+\section{Changes in version 0.0.9 (2022-05-25)}{
+  \itemize{
+    \item Simplified and standardized to only use public API
+    \item No longer tests and accomodates pre-Apt 2.0 API
+  }
+}
+
 \section{Changes in version 0.0.8 (2021-12-04)}{
   \itemize{
     \item New test file \code{version.R} ensures NEWS file documents

@@ -1,7 +1,7 @@
 //
 //  RcppAPT -- Rcpp bindings to APT package information on Debian systems
 //
-//  Copyright (C) 2015 - 2020  Dirk Eddelbuettel
+//  Copyright (C) 2015 - 2022  Dirk Eddelbuettel
 //
 //  This file is part of RcppAPT
 //
@@ -23,12 +23,10 @@
   #include <apt-pkg/cachefile.h>
   #include <apt-pkg/cachefilter.h>
   #include <apt-pkg/pkgcache.h>
-  #include <apt-pkg/debsrcrecords.h>
-  #if defined(APT_Version2)
-    #include <apt-pkg/error.h>
-    #include <apt-pkg/macros.h>
-    #include <apt-pkg/pkgsystem.h>
-  #endif
+  #include <apt-pkg/error.h>
+  #include <apt-pkg/macros.h>
+  #include <apt-pkg/pkgsystem.h>
+  #include <apt-pkg/srcrecords.h>
 #endif
 
 #include <Rcpp.h>
@@ -66,7 +64,7 @@ std::vector<std::string> buildDepends(const std::string regexp = ".") {
     std::vector<std::string> res;
 
     pkgSourceList *List = cacheFile.GetSourceList();
-    if (unlikely(List == NULL))
+    if (List == NULL)
         return res;             // #nocov
 
     // Create the text record parsers
@@ -79,7 +77,7 @@ std::vector<std::string> buildDepends(const std::string regexp = ".") {
             const std::string pkgstr = pkg.FullName(true);
             SrcRecs.Restart();
 
-            debSrcRecordParser::Parser *Parse;
+            pkgSrcRecords::Parser *Parse;
             while ((Parse = SrcRecs.Find(pkgstr.c_str(), false)) != 0) {
                 std::vector<pkgSrcRecords::Parser::BuildDepRec> bdvec;
                 Parse->BuildDepends(bdvec, false);
@@ -138,10 +136,12 @@ bool showSrc(const std::string regexp = ".") {
     APT::CacheFilter::PackageNameMatchesRegEx pkgre(regexp);
 
     pkgSourceList *List = cacheFile.GetSourceList();
-    if (unlikely(List == NULL)) {		// #nocov  start
+    if (List == NULL) {					// #nocov  start
         Rcpp::Rcout << "Error: No cached sources list. Maybe you have src-deb entries?\n";
         return false;
     } 									// #nocov end
+
+    unsigned found = 0;
 
     // Create the text record parsers
     pkgSrcRecords SrcRecs(*List);
@@ -149,8 +149,6 @@ bool showSrc(const std::string regexp = ".") {
         Rcpp::Rcout << "Error: No sources records. Maybe you have src-deb entries?\n";
         return false;
     }										// #nocov end
-
-    unsigned found = 0;
 
     for (pkgCache::PkgIterator pkg = cache->PkgBegin(); !pkg.end(); pkg++) {
         if (pkgre(pkg)) {
@@ -173,6 +171,7 @@ bool showSrc(const std::string regexp = ".") {
             //}
         }
     }
+
     if (found == 0) {
         //_error->Notice(_("No packages found"));
         return false;		// #nocov

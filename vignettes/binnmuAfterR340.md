@@ -1,5 +1,5 @@
 <!--
-%\VignetteIndexEntry{Combining Drat and Travis CI}
+%\VignetteIndexEntry{Minimal Set of binnmu Packages}
 %\VignetteEngine{simplermarkdown::mdweave_to_html}
 %\VignetteEncoding{UTF-8}
 -->
