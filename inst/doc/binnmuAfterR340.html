@@ -7,77 +7,85 @@
   <meta name="author" content="Dirk Eddelbuettel" />
   <title>Minimal Set of binnmu Packages</title>
   <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
   <style type="text/css">
 body {
 max-width: 50rem;
@@ -155,9 +163,6 @@ background-color: unset;
 color: unset;
 }
 </style>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <header id="title-block-header">
@@ -173,29 +178,53 @@ color: unset;
 -->
 <h2 id="step-0-problem-definition">Step 0: Problem Definition</h2>
 <h3 id="upstream-change">Upstream Change</h3>
-<p>R 3.4.0, released in April, included the following paragraph in its NEWS file:</p>
+<p>R 3.4.0, released in April, included the following paragraph in its
+NEWS file:</p>
 <ul>
-<li>Packages which register native routines for .C or .Fortran need to be re-installed for this version (unless installed with R-devel SVN revision r72375 or later).</li>
+<li>Packages which register native routines for .C or .Fortran need to
+be re-installed for this version (unless installed with R-devel SVN
+revision r72375 or later).</li>
 </ul>
-<p>This transition has no fallback behavior (as is more common with R changes) and requires a rebuild. Packages build under older R version still <em>load</em> and function partially, but will be unable to access any native (<em>i.e.</em>, compiled) routines.</p>
+<p>This transition has no fallback behavior (as is more common with R
+changes) and requires a rebuild. Packages build under older R version
+still <em>load</em> and function partially, but will be unable to access
+any native (<em>i.e.</em>, compiled) routines.</p>
 <h3 id="impact">Impact</h3>
-<p>For the Debian packages, this means that we need to consider the set of packages which</p>
+<p>For the Debian packages, this means that we need to consider the set
+of packages which</p>
 <ul>
 <li>match <code>r-cran-*</code>, <code>r-bioc-*</code> and alike</li>
-<li>contain compiled code (as R-only packages have no native routines)</li>
-<li>use at least one <code>.C()</code> or <code>.Fortran()</code> (but <em>not</em> <code>.Call()</code>) call</li>
-<li>use (the hitherto optional) routine registration (so that the change in behaviour is noticible)</li>
+<li>contain compiled code (as R-only packages have no native
+routines)</li>
+<li>use at least one <code>.C()</code> or <code>.Fortran()</code> (but
+<em>not</em> <code>.Call()</code>) call</li>
+<li>use (the hitherto optional) routine registration (so that the change
+in behaviour is noticible)</li>
 <li>have <em>not yet</em> been recompiled with R 3.4.0 or R 3.4.1</li>
 </ul>
-<p>This note computes this set and provides the input for a <a href="https://release.debian.org/wanna-build.txt">wanna-build</a> request.</p>
-<p>This version is updated version which reflects the fourth point above which was pointed out to me by Kurt Hornik after I shared the initial version with him. The point he raised (“does it use <code>R_registerRoutines</code> ?”) is important and further reduces the effective set.</p>
-<h2 id="step-1-reverse-dependencies-of-r">Step 1: Reverse Dependencies of R</h2>
-<h3 id="fresh-debian-unstable-session">Fresh Debian unstable session</h3>
-<p>For this we drop into a clean Docker container running Debian unstable. Later, we will need the current sources of the <a href="https://github.com/eddelbuettel/rcppapt"><code>RcppAPT</code></a> package so we start from a local git directory:</p>
+<p>This note computes this set and provides the input for a <a href="https://release.debian.org/wanna-build.txt">wanna-build</a>
+request.</p>
+<p>This version is updated version which reflects the fourth point above
+which was pointed out to me by Kurt Hornik after I shared the initial
+version with him. The point he raised (“does it use
+<code>R_registerRoutines</code> ?”) is important and further reduces the
+effective set.</p>
+<h2 id="step-1-reverse-dependencies-of-r">Step 1: Reverse Dependencies
+of R</h2>
+<h3 id="fresh-debian-unstable-session">Fresh Debian unstable
+session</h3>
+<p>For this we drop into a clean Docker container running Debian
+unstable. Later, we will need the current sources of the <a href="https://github.com/eddelbuettel/rcppapt"><code>RcppAPT</code></a>
+package so we start from a local git directory:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">server</span><span class="op">&gt;</span> cd ~/git <span class="kw">&amp;&amp;</span> <span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-ti</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/mnt debian:unstable</span></code></pre></div>
 <h3 id="update-debian">Update Debian</h3>
-<p>Inside the Docker container, we update the package information and install what is needed to build <a href="https://github.com/eddelbuettel/rcppapt"><code>RcppAPT</code></a> for R. This includes Rcpp and <code>libapt-pkg-dev</code>. We also install the data.table package used for aggregating the (R and Debian) package data computed below.</p>
-<p>This step takes a short moment, with the exact time dependent on the network connection and other factors.</p>
+<p>Inside the Docker container, we update the package information and
+install what is needed to build <a href="https://github.com/eddelbuettel/rcppapt"><code>RcppAPT</code></a>
+for R. This includes Rcpp and <code>libapt-pkg-dev</code>. We also
+install the data.table package used for aggregating the (R and Debian)
+package data computed below.</p>
+<p>This step takes a short moment, with the exact time dependent on the
+network connection and other factors.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span><span class="op">&gt;</span> apt-get update</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span><span class="op">&gt;</span> apt-get <span class="at">-y</span> dist-upgrade</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -205,15 +234,23 @@ color: unset;
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span><span class="op">&gt;</span> R CMD INSTALL rcppapt/       <span class="co"># assuming we&#39;re above rcppapt</span></span></code></pre></div>
 <h3 id="launch-r">Launch R</h3>
 <h4 id="all-candidates">All Candidates</h4>
-<p>Inside the same Docker session, we now launch R and run (almost all of) the remainder from R.</p>
+<p>Inside the same Docker session, we now launch R and run (almost all
+of) the remainder from R.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(RcppAPT)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(data.table)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd <span class="ot">&lt;-</span> <span class="fu">reverseDepends</span>(<span class="st">&quot;r-base-core&quot;</span>)         <span class="co"># 516 x 2</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd <span class="ot">&lt;-</span> rd[<span class="fu">grepl</span>(<span class="st">&quot;^r-&quot;</span>, rd[,<span class="dv">1</span>]), ]            <span class="co"># 489 x 2</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd <span class="ot">&lt;-</span> rd[<span class="fu">order</span>(rd[,<span class="dv">2</span>]), ]</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">setDT</span>(rd)</span></code></pre></div>
-<p>We use <code>RcppAPT</code> to compute the reverse depends of the main R package providing the R engine: <code>r-base-core</code>. Among those (currently) 516 packages are both other packages from the upstream source (<code>r-base*</code>, <code>r-doc*</code>) which we exclude first as well as other, non-R-package dependencies (such as <code>rpy2</code>) which we also exclude.</p>
-<p>This leaves 489 candidate packages out of the initial 514. The version field tells which r-base-core version was used to build the package—information we need per the setup described above.</p>
+<p>We use <code>RcppAPT</code> to compute the reverse depends of the
+main R package providing the R engine: <code>r-base-core</code>. Among
+those (currently) 516 packages are both other packages from the upstream
+source (<code>r-base*</code>, <code>r-doc*</code>) which we exclude
+first as well as other, non-R-package dependencies (such as
+<code>rpy2</code>) which we also exclude.</p>
+<p>This leaves 489 candidate packages out of the initial 514. The
+version field tells which r-base-core version was used to build the
+package—information we need per the setup described above.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>             package version</span>
@@ -229,11 +266,14 @@ color: unset;
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="dv">488</span><span class="sc">:</span>     r<span class="sc">-</span>cran<span class="sc">-</span>boot <span class="dv">3</span>.<span class="fl">4.1</span><span class="dv">-2</span></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="dv">489</span><span class="sc">:</span>      r<span class="sc">-</span>cran<span class="sc">-</span>car <span class="dv">3</span>.<span class="fl">4.1</span><span class="dv">-2</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span></code></pre></div>
-<p>Next we need to filter out two versions with unsortable (<em>i.e.</em>,non-semantic) version numbers, and apply a logical filter depending on whether the package was built with R version 3.3.3 or earlier, indicating a possibe required rebuild.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd[ version<span class="sc">==</span><span class="st">&quot;3.0.0~20130330-1&quot;</span>, version <span class="sc">:</span><span class="er">=</span> <span class="st">&quot;3.0.0.20130330-1&quot;</span>]</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd[ version<span class="sc">==</span><span class="st">&quot;3.2.4-revised-1&quot;</span>, version <span class="sc">:</span><span class="er">=</span> <span class="st">&quot;3.2.4.1-1&quot;</span>]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd[version<span class="sc">!=</span><span class="st">&quot;&quot;</span>, oldVersion <span class="sc">:</span><span class="er">=</span> version  <span class="sc">&lt;=</span>  <span class="fu">package_version</span>(<span class="st">&quot;3.3.3-1&quot;</span>)]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd[ <span class="fu">is.na</span>(oldVersion), oldVersion <span class="sc">:</span><span class="er">=</span> <span class="cn">FALSE</span>]</span>
+<p>Next we need to filter out two versions with unsortable
+(<em>i.e.</em>,non-semantic) version numbers, and apply a logical filter
+depending on whether the package was built with R version 3.3.3 or
+earlier, indicating a possibe required rebuild.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd[ version<span class="sc">==</span><span class="st">&quot;3.0.0~20130330-1&quot;</span>, version <span class="sc">:=</span> <span class="st">&quot;3.0.0.20130330-1&quot;</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd[ version<span class="sc">==</span><span class="st">&quot;3.2.4-revised-1&quot;</span>, version <span class="sc">:=</span> <span class="st">&quot;3.2.4.1-1&quot;</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd[version<span class="sc">!=</span><span class="st">&quot;&quot;</span>, oldVersion <span class="sc">:=</span> version  <span class="sc">&lt;=</span>  <span class="fu">package_version</span>(<span class="st">&quot;3.3.3-1&quot;</span>)]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd[ <span class="fu">is.na</span>(oldVersion), oldVersion <span class="sc">:=</span> <span class="cn">FALSE</span>]</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd[ <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">&quot;r-(doc|base)&quot;</span>, package), ]</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>             package          version oldVersion</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">:</span>     r<span class="sc">-</span>other<span class="sc">-</span>rot                       <span class="cn">FALSE</span></span>
@@ -248,8 +288,8 @@ color: unset;
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="dv">481</span><span class="sc">:</span>     r<span class="sc">-</span>cran<span class="sc">-</span>boot          <span class="dv">3</span>.<span class="fl">4.1</span><span class="dv">-2</span>      <span class="cn">FALSE</span></span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="dv">482</span><span class="sc">:</span>      r<span class="sc">-</span>cran<span class="sc">-</span>car          <span class="dv">3</span>.<span class="fl">4.1</span><span class="dv">-2</span>      <span class="cn">FALSE</span></span></code></pre></div>
 <p>To cover some corner case, we derive a <code>skip</code> field:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd[ version<span class="sc">==</span><span class="st">&quot;&quot;</span>, skip<span class="sc">:</span><span class="er">=</span><span class="cn">TRUE</span> ]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd[ <span class="fu">is.na</span>(skip), skip<span class="sc">:</span><span class="er">=</span><span class="cn">FALSE</span>]</span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd[ version<span class="sc">==</span><span class="st">&quot;&quot;</span>, skip<span class="sc">:=</span><span class="cn">TRUE</span> ]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd[ <span class="fu">is.na</span>(skip), skip<span class="sc">:=</span><span class="cn">FALSE</span>]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> rd[ skip<span class="sc">==</span><span class="cn">FALSE</span>, ]</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>             package          version oldVersion  skip</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">:</span> r<span class="sc">-</span>cran<span class="sc">-</span>epitools          <span class="dv">3</span>.<span class="fl">0.0</span><span class="dv">-2</span>       <span class="cn">TRUE</span> <span class="cn">FALSE</span></span>
@@ -265,7 +305,9 @@ color: unset;
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="dv">484</span><span class="sc">:</span>      r<span class="sc">-</span>cran<span class="sc">-</span>car          <span class="dv">3</span>.<span class="fl">4.1</span><span class="dv">-2</span>      <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span></code></pre></div>
 <h4 id="compiled-packages">Compiled Packages</h4>
-<p>Next, we find the actual dependencies of each of these packages by constructing a large regular expression which we feed into <code>RcppAPT::getDepends()</code></p>
+<p>Next, we find the actual dependencies of each of these packages by
+constructing a large regular expression which we feed into
+<code>RcppAPT::getDepends()</code></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> regexp <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">paste0</span>(<span class="st">&quot;^&quot;</span>, rd[skip<span class="sc">==</span><span class="cn">FALSE</span>, package], <span class="st">&quot;$&quot;</span>), <span class="at">collapse=</span><span class="st">&quot;|&quot;</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dep <span class="ot">&lt;-</span> <span class="fu">getDepends</span>(regexp)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">setDT</span>(dep)</span>
@@ -283,7 +325,9 @@ color: unset;
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="dv">3747</span><span class="sc">:</span>   r<span class="sc">-</span>cran<span class="sc">-</span>pkgkitten         r<span class="sc">-</span>base<span class="sc">-</span>core     <span class="dv">2</span>          <span class="dv">3</span>.<span class="fl">3.2</span><span class="dv">-1</span></span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="dv">3748</span><span class="sc">:</span>   r<span class="sc">-</span>cran<span class="sc">-</span>pkgkitten             r<span class="sc">-</span>api<span class="dv">-3</span>     <span class="dv">0</span>           (null)</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span></code></pre></div>
-<p>Next we subset to those have <code>libc6</code> as a Depends, meaning they are compiled packages. This excludes all the R packages having only R code.</p>
+<p>Next we subset to those have <code>libc6</code> as a Depends, meaning
+they are compiled packages. This excludes all the R packages having only
+R code.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> comp <span class="ot">&lt;-</span> dep[deppkg<span class="sc">==</span><span class="st">&quot;libc6&quot;</span>]   <span class="co"># 242</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> comp</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                 srcpkg deppkg cmpop version isCompiled</span>
@@ -299,7 +343,8 @@ color: unset;
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="dv">241</span><span class="sc">:</span>         r<span class="sc">-</span>cran<span class="sc">-</span>gsl  libc6     <span class="dv">2</span>     <span class="fl">2.4</span>       <span class="cn">TRUE</span></span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="dv">242</span><span class="sc">:</span>         r<span class="sc">-</span>cran<span class="sc">-</span>gss  libc6     <span class="dv">2</span>     <span class="fl">2.4</span>       <span class="cn">TRUE</span></span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span></code></pre></div>
-<p>We are now getting closer. We set keys on the <code>data.table</code> objects, and then do an inner join:</p>
+<p>We are now getting closer. We set keys on the <code>data.table</code>
+objects, and then do an inner join:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">setkey</span>(comp, srcpkg)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">setkey</span>(rd, package)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> all <span class="ot">&lt;-</span> rd[comp[, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>)]]   <span class="co"># inner join (by default on columns with keys)</span></span>
@@ -317,9 +362,11 @@ color: unset;
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="dv">241</span><span class="sc">:</span>               r<span class="sc">-</span>cran<span class="sc">-</span>ttr <span class="dv">3</span>.<span class="fl">4.1</span><span class="dv">-2</span>      <span class="cn">FALSE</span> <span class="cn">FALSE</span>       <span class="cn">TRUE</span></span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="dv">242</span><span class="sc">:</span>                r<span class="sc">-</span>mathlib <span class="dv">3</span>.<span class="fl">4.1</span><span class="dv">-2</span>      <span class="cn">FALSE</span> <span class="cn">FALSE</span>       <span class="cn">TRUE</span></span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span></code></pre></div>
-<p>We have 242 <em>potential</em> rebuilds, down from 514 reverse depends at the outset.</p>
+<p>We have 242 <em>potential</em> rebuilds, down from 514 reverse
+depends at the outset.</p>
 <h4 id="version-check">Version check</h4>
-<p>Next, we can concentrate on those having been built with the older versions requiring a rebuild:</p>
+<p>Next, we can concentrate on those having been built with the older
+versions requiring a rebuild:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> all[oldVersion<span class="sc">==</span><span class="cn">TRUE</span>,][<span class="fu">order</span>(version),]    <span class="co"># 167</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                      package version oldVersion  skip isCompiled</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">:</span>            r<span class="sc">-</span>cran<span class="sc">-</span>bitops <span class="dv">3</span>.<span class="fl">0.1</span><span class="dv">-6</span>       <span class="cn">TRUE</span> <span class="cn">FALSE</span>       <span class="cn">TRUE</span></span>
@@ -335,8 +382,8 @@ color: unset;
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="dv">167</span><span class="sc">:</span>               r<span class="sc">-</span>cran<span class="sc">-</span>zoo <span class="dv">3</span>.<span class="fl">3.3</span><span class="dv">-1</span>       <span class="cn">TRUE</span> <span class="cn">FALSE</span>       <span class="cn">TRUE</span></span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span></code></pre></div>
 <p>Now we are down to 167 packages.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> all[, cran<span class="sc">:</span><span class="er">=</span><span class="fu">grepl</span>(<span class="st">&quot;^r-cran&quot;</span>, package) ]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> all[, bioc<span class="sc">:</span><span class="er">=</span><span class="fu">grepl</span>(<span class="st">&quot;^r-bioc&quot;</span>, package) ]</span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> all[, cran<span class="sc">:=</span><span class="fu">grepl</span>(<span class="st">&quot;^r-cran&quot;</span>, package) ]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> all[, bioc<span class="sc">:=</span><span class="fu">grepl</span>(<span class="st">&quot;^r-bioc&quot;</span>, package) ]</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> all[bioc<span class="sc">==</span><span class="cn">TRUE</span> <span class="sc">&amp;</span> oldVersion<span class="sc">==</span><span class="cn">TRUE</span>,]                <span class="co"># 17 BioC</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                  package          version oldVersion  skip isCompiled  cran bioc</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span><span class="sc">:</span>           r<span class="sc">-</span>bioc<span class="sc">-</span>affy <span class="dv">3</span>.<span class="dv">3</span>.<span class="fl">1.20161024</span><span class="dv">-1</span>       <span class="cn">TRUE</span> <span class="cn">FALSE</span>       <span class="cn">TRUE</span> <span class="cn">FALSE</span> <span class="cn">TRUE</span></span>
@@ -357,7 +404,9 @@ color: unset;
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span><span class="sc">:</span>    r<span class="sc">-</span>bioc<span class="sc">-</span>rtracklayer          <span class="dv">3</span>.<span class="fl">3.2</span><span class="dv">-1</span>       <span class="cn">TRUE</span> <span class="cn">FALSE</span>       <span class="cn">TRUE</span> <span class="cn">FALSE</span> <span class="cn">TRUE</span></span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="dv">17</span><span class="sc">:</span>       r<span class="sc">-</span>bioc<span class="sc">-</span>snpstats <span class="dv">3</span>.<span class="dv">3</span>.<span class="fl">1.20161024</span><span class="dv">-1</span>       <span class="cn">TRUE</span> <span class="cn">FALSE</span>       <span class="cn">TRUE</span> <span class="cn">FALSE</span> <span class="cn">TRUE</span></span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span></code></pre></div>
-<p>Among these are 17 BioConductor packages. This is a superset as we do not know which of these use only <code>.Call()</code> meaning that no rebuild would be required.</p>
+<p>Among these are 17 BioConductor packages. This is a superset as we do
+not know which of these use only <code>.Call()</code> meaning that no
+rebuild would be required.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> all[bioc<span class="sc">!=</span><span class="cn">TRUE</span> <span class="sc">&amp;</span> cran<span class="sc">!=</span><span class="cn">TRUE</span> <span class="sc">&amp;</span> oldVersion<span class="sc">==</span><span class="cn">TRUE</span>,]   <span class="co"># 3 other</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                    package version oldVersion  skip isCompiled  cran  bioc</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span>       r<span class="sc">-</span>other<span class="sc">-</span>amsmercury <span class="dv">3</span>.<span class="fl">3.2</span><span class="dv">-1</span>       <span class="cn">TRUE</span> <span class="cn">FALSE</span>       <span class="cn">TRUE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
@@ -384,7 +433,7 @@ color: unset;
 <p>Next, we mix this with information from CRAN.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> db <span class="ot">&lt;-</span> tools<span class="sc">::</span><span class="fu">CRAN_package_db</span>()   <span class="co"># CRAN pkge info: N rows x 65 cols</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">setDT</span>(db)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> db[, package<span class="sc">:</span><span class="er">=</span><span class="fu">paste0</span>(<span class="st">&quot;r-cran-&quot;</span>, <span class="fu">tolower</span>(Package))]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> db[, package<span class="sc">:=</span><span class="fu">paste0</span>(<span class="st">&quot;r-cran-&quot;</span>, <span class="fu">tolower</span>(Package))]</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">setkey</span>(db, package)              <span class="co"># key on package field</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> foo <span class="ot">&lt;-</span> db[ cand ]                <span class="co"># inner join</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> foo[, .(package, Package, Version, NeedsCompilation, oldVersion, skip)]</span>
@@ -401,11 +450,19 @@ color: unset;
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="dv">146</span><span class="sc">:</span>     r<span class="sc">-</span>cran<span class="sc">-</span>yaml     yaml  <span class="dv">2</span>.<span class="fl">1.14</span>              yes       <span class="cn">TRUE</span> <span class="cn">FALSE</span></span>
 <span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="dv">147</span><span class="sc">:</span>      r<span class="sc">-</span>cran<span class="sc">-</span>zoo      zoo   <span class="fl">1.8</span><span class="dv">-0</span>              yes       <span class="cn">TRUE</span> <span class="cn">FALSE</span></span>
 <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span></code></pre></div>
-<p>This is our set of 147 candidate packages with their CRAN name, Debian name and upstream version.</p>
+<p>This is our set of 147 candidate packages with their CRAN name,
+Debian name and upstream version.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">saveRDS</span>(foo[, .(package, Package, Version, NeedsCompilation, oldVersion, skip)], <span class="at">file=</span><span class="st">&quot;debpackages.rds&quot;</span>)</span></code></pre></div>
 <p>We save this file to be used on another machine.</p>
 <h2 id="step-2-grep">Step 2: Grep</h2>
-<p>On another machine with access to all CRAN package sources (which I happen to have access to), we use the list of 147 candidate packages and run a recursive grep for each. We store the output from two <code>egrep</code> runs, called via <code>system()</code>, directly in the same data structure. The first checks for <code>.C()</code> or <code>.Fortran()</code> calls in the R scripts; the second checks for <code>R_registerRoutines()</code> in the compiled C code (with thanks again to Kurt Hornik for the suggestion)</p>
+<p>On another machine with access to all CRAN package sources (which I
+happen to have access to), we use the list of 147 candidate packages and
+run a recursive grep for each. We store the output from two
+<code>egrep</code> runs, called via <code>system()</code>, directly in
+the same data structure. The first checks for <code>.C()</code> or
+<code>.Fortran()</code> calls in the R scripts; the second checks for
+<code>R_registerRoutines()</code> in the compiled C code (with thanks
+again to Kurt Hornik for the suggestion)</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>deb <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;~/debpackages.rds&quot;</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(deb)) {</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    deb[i, <span class="st">&quot;dotCorFortran&quot;</span>] <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">is.na</span>(deb[i, <span class="st">&quot;Package&quot;</span>])) <span class="cn">NA</span></span>
@@ -415,7 +472,9 @@ color: unset;
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(deb, <span class="st">&quot;~/debpackagesout.rds&quot;</span>)</span></code></pre></div>
 <h2 id="step-3-finalize">Step 3: Finalize</h2>
-<p>We read the data back in and subset on those for which the recursive grep found actual uses of <code>.C()</code> or <code>.Fortran()</code>. The list contains 72 packages.</p>
+<p>We read the data back in and subset on those for which the recursive
+grep found actual uses of <code>.C()</code> or <code>.Fortran()</code>.
+The list contains 72 packages.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> deb <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;debpackagesout.rds&quot;</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">setDT</span>(deb)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> deb[ <span class="fu">is.na</span>(dotCorFortran) <span class="sc">|</span>(dotCorFortran <span class="sc">&amp;</span> hasRegistration), <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
@@ -464,7 +523,9 @@ color: unset;
 <span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="dv">42</span><span class="sc">:</span>              r<span class="sc">-</span>cran<span class="sc">-</span>vgam              VGAM    <span class="fl">1.0</span><span class="dv">-4</span></span>
 <span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a>                     package           Package  Version</span>
 <span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span></code></pre></div>
-<p>Similarly, the 17 BioC and 3 other packages can be tested via recursive greps (not shown) in a directory filled with <code>apt-get source</code> downloads:</p>
+<p>Similarly, the 17 BioC and 3 other packages can be tested via
+recursive greps (not shown) in a directory filled with
+<code>apt-get source</code> downloads:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">rbind</span>(all[bioc<span class="sc">!=</span><span class="cn">TRUE</span> <span class="sc">&amp;</span> cran<span class="sc">!=</span><span class="cn">TRUE</span> <span class="sc">&amp;</span> oldVersion<span class="sc">==</span><span class="cn">TRUE</span>, <span class="dv">1</span>],</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>              all[bioc<span class="sc">==</span><span class="cn">TRUE</span> <span class="sc">&amp;</span> oldVersion<span class="sc">==</span><span class="cn">TRUE</span>, <span class="dv">1</span>])[[<span class="dv">1</span>]]</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -493,7 +554,8 @@ color: unset;
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span>     r<span class="sc">-</span>bioc<span class="sc">-</span>genefilter</span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">:</span> r<span class="sc">-</span>bioc<span class="sc">-</span>preprocesscore</span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span></code></pre></div>
-<p>These 42, along with the 4 (from the initally 17 BioC and 3 ‘other’) packages are our target set.</p>
+<p>These 42, along with the 4 (from the initally 17 BioC and 3 ‘other’)
+packages are our target set.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> nmu <span class="ot">&lt;-</span> deb[ <span class="fu">is.na</span>(dotCorFortran) <span class="sc">|</span> (dotCorFortran <span class="sc">&amp;</span> hasRegistration), <span class="dv">1</span>] <span class="co">#42</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> oth <span class="ot">&lt;-</span> df[dotCorFortran <span class="sc">&amp;</span> hasRegistration, <span class="dv">1</span>]</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span>
@@ -549,7 +611,8 @@ color: unset;
 <span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a>                     package</span>
 <span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span>
 <span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span></span></code></pre></div>
-<p>We need to retrieve the version number in Debian unstable of these packages by once agaim relying of a function from <a href="https://github.com/eddelbuettel/rcppapt"><code>RcppAPT</code></a></p>
+<p>We need to retrieve the version number in Debian unstable of these
+packages by once agaim relying of a function from <a href="https://github.com/eddelbuettel/rcppapt"><code>RcppAPT</code></a></p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> regexp <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">paste0</span>(<span class="st">&quot;^&quot;</span>, nmu[[<span class="dv">1</span>]], <span class="st">&quot;$&quot;</span>), <span class="at">collapse=</span><span class="st">&quot;|&quot;</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> res <span class="ot">&lt;-</span> <span class="fu">getPackages</span>(regexp)</span>
@@ -654,12 +717,24 @@ color: unset;
 <span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a>nmu r<span class="sc">-</span>cran<span class="sc">-</span>gam_1<span class="fl">.14</span><span class="dv">-1</span> . ANY . <span class="sc">-</span>m <span class="st">&#39;Rebuild against R 3.4.*, see #861333&#39;</span></span>
 <span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span></code></pre></div>
 <h2 id="summary">Summary</h2>
-<p>The final set of 46 NMUs is the minimal change required, and reasonable relative to the 516 reverse dependencies of R itself. We are able to narrow the set of packages requiring a rebuild down by a combining data from the R package system, the Debian package system and (some) package sources we were able to access on a CRAN-related server.</p>
+<p>The final set of 46 NMUs is the minimal change required, and
+reasonable relative to the 516 reverse dependencies of R itself. We are
+able to narrow the set of packages requiring a rebuild down by a
+combining data from the R package system, the Debian package system and
+(some) package sources we were able to access on a CRAN-related
+server.</p>
 <h3 id="acknowledgements">Acknowledgements</h3>
-<p>Thanks for Kurt Hornik for pointing out the additional check for <code>R_registerRoutine</code> in the in C code, leading to a further reduction from 90+ packages to 46.</p>
+<p>Thanks for Kurt Hornik for pointing out the additional check for
+<code>R_registerRoutine</code> in the in C code, leading to a further
+reduction from 90+ packages to 46.</p>
 <h3 id="history">History</h3>
-<p>The first published version (Julyu 2017) did not check for <code>R_registerRoutines</code>. The second version (August 2017) does, leading to 46 suggested NMUs.</p>
+<p>The first published version (Julyu 2017) did not check for
+<code>R_registerRoutines</code>. The second version (August 2017) does,
+leading to 46 suggested NMUs.</p>
 <h3 id="see-also">See Also</h3>
-<p>The <a href="https://github.com/eddelbuettel/rcppapt/blob/master/vignettes/binnmuAfterR340.md">source file</a> is on GitHub as is the <a href="https://github.com/eddelbuettel/rcppapt/commits/master/vignettes/binnmuAfterR340.md">revision history</a>. The <a href="https://bugs.debian.org/868558">corresponding Debian bug report</a> is based on this analysis.</p>
+<p>The <a href="https://github.com/eddelbuettel/rcppapt/blob/master/vignettes/binnmuAfterR340.md">source
+file</a> is on GitHub as is the <a href="https://github.com/eddelbuettel/rcppapt/commits/master/vignettes/binnmuAfterR340.md">revision
+history</a>. The <a href="https://bugs.debian.org/868558">corresponding
+Debian bug report</a> is based on this analysis.</p>
 </body>
 </html>

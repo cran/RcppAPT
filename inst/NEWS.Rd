@@ -3,6 +3,14 @@
 \newcommand{\ghpr}{\href{https://github.com/eddelbuettel/rcppapt/pull/#1}{##1}}
 \newcommand{\ghit}{\href{https://github.com/eddelbuettel/rcppapt/issues/#1}{##1}}
 
+\section{Changes in version 0.0.10 (2024-11-29)}{
+  \itemize{
+    \item Package maintenance updating continuous integration script versions
+    as well as coverage link from README, and switching to Authors@R
+    \item C++ compilation standards updated to C++17 to comply with libapt-pkg
+  }
+}
+
 \section{Changes in version 0.0.9 (2022-05-25)}{
   \itemize{
     \item Simplified and standardized to only use public API
